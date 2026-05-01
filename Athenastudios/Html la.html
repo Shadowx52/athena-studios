@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Athena Studios</title>
+<link rel="icon" type="image/jpg" href="a_3316b054166e18e86d385bfc1990ade7_1.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --neon:#00c3ff;
+  --neon2:#0080ff;
+  --neon3:#7df9ff;
+  --dark:#020810;
+  --dark2:#040d1a;
+  --dark3:#071428;
+  --text:#e8f4ff;
+  --muted:#6a8fa8;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--dark);
+  color:var(--text);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+body::before{
+  content:'';
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse at 20% 20%, rgba(0,195,255,0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(0,128,255,0.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(7,20,40,0.8) 0%, transparent 100%);
+  pointer-events:none;
+  z-index:0;
+}
+.particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;overflow:hidden}
+.particle{position:absolute;border-radius:50%;animation:float linear infinite}
+@keyframes float{0%{transform:translateY(100vh) scale(0);opacity:0}10%{opacity:1}90%{opacity:0.3}100%{transform:translateY(-20px) scale(1);opacity:0}}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:1rem 3rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:linear-gradient(to bottom, rgba(2,8,16,0.95), transparent);
+  border-bottom:1px solid rgba(0,195,255,0.08);
+  backdrop-filter:blur(12px);
+  transition:all 0.3s;
+}
+.logo{
+  display:flex;align-items:center;gap:12px;
+  font-family:'Orbitron',monospace;
+  font-weight:900;font-size:1.1rem;
+  color:var(--neon);
+  text-shadow:0 0 20px rgba(0,195,255,0.8),0 0 40px rgba(0,195,255,0.4);
+  letter-spacing:2px;
+  text-decoration:none;
+}
+.logo-icon{
+  width:42px;height:42px;
+  background:linear-gradient(135deg,rgba(0,195,255,0.2),rgba(0,128,255,0.1));
+  border:1.5px solid rgba(0,195,255,0.6);
+  border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;font-weight:900;color:var(--neon);
+  box-shadow:0 0 15px rgba(0,195,255,0.3),inset 0 0 15px rgba(0,195,255,0.05);
+  font-family:'Orbitron',monospace;
+}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  color:rgba(232,244,255,0.6);
+  text-decoration:none;
+  font-size:0.85rem;font-weight:500;
+  letter-spacing:1px;text-transform:uppercase;
+  transition:color 0.3s,text-shadow 0.3s;
+  font-family:'Rajdhani',sans-serif;
+}
+.nav-links a:hover{color:var(--neon);text-shadow:0 0 12px rgba(0,195,255,0.7)}
+.nav-cta{
+  background:linear-gradient(135deg,rgba(0,195,255,0.15),rgba(0,128,255,0.08));
+  border:1.5px solid rgba(0,195,255,0.5);
+  color:var(--neon);
+  padding:0.5rem 1.4rem;
+  border-radius:6px;
+  text-decoration:none;
+  font-family:'Rajdhani',sans-serif;
+  font-weight:700;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;
+  transition:all 0.3s;
+  box-shadow:0 0 15px rgba(0,195,255,0.15);
+}
+.nav-cta:hover{
+  background:rgba(0,195,255,0.25);
+  box-shadow:0 0 25px rgba(0,195,255,0.4),0 0 50px rgba(0,195,255,0.15);
+  transform:translateY(-1px);
+}
+
+/* HERO */
+#hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  padding:8rem 2rem 4rem;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background:
+    radial-gradient(ellipse at center 40%, rgba(0,195,255,0.06) 0%, transparent 60%),
+    linear-gradient(to bottom, var(--dark) 0%, var(--dark2) 50%, var(--dark) 100%);
+}
+.hero-grid{
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  background-image:
+    linear-gradient(rgba(0,195,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,195,255,0.03) 1px, transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image:radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+.hero-content{position:relative;z-index:2;max-width:900px}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid rgba(0,195,255,0.3);
+  background:rgba(0,195,255,0.05);
+  border-radius:20px;padding:0.4rem 1rem;
+  font-size:0.75rem;font-family:'Rajdhani',sans-serif;
+  letter-spacing:2px;text-transform:uppercase;
+  color:var(--neon3);margin-bottom:2rem;
+  animation:fadeInDown 0.8s ease both;
+}
+.hero-badge::before{
+  content:'';width:6px;height:6px;
+  background:var(--neon);border-radius:50%;
+  box-shadow:0 0 8px var(--neon);
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glowPulse{
+  0%,100%{text-shadow:0 0 20px rgba(0,195,255,0.8),0 0 40px rgba(0,195,255,0.4),0 0 80px rgba(0,195,255,0.2)}
+  50%{text-shadow:0 0 30px rgba(0,195,255,1),0 0 60px rgba(0,195,255,0.6),0 0 120px rgba(0,195,255,0.3)}
+}
+.hero-title{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(2.5rem,8vw,6rem);
+  font-weight:900;
+  color:var(--neon);
+  letter-spacing:4px;
+  line-height:1.1;
+  animation:glowPulse 3s ease-in-out infinite, fadeInDown 0.8s 0.2s ease both;
+  animation-fill-mode:both;
+}
+.hero-subtitle{
+  font-family:'Rajdhani',sans-serif;
+  font-size:clamp(1rem,2.5vw,1.4rem);
+  color:rgba(232,244,255,0.6);
+  letter-spacing:6px;text-transform:uppercase;
+  margin:1.5rem 0 2.5rem;
+  animation:fadeInUp 0.8s 0.4s ease both;
+}
+.hero-desc{
+  font-size:1.1rem;color:rgba(232,244,255,0.5);
+  max-width:600px;margin:0 auto 3rem;
+  line-height:1.8;
+  animation:fadeInUp 0.8s 0.5s ease both;
+}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,rgba(0,195,255,0.2),rgba(0,128,255,0.1));
+  border:2px solid rgba(0,195,255,0.7);
+  color:var(--neon);
+  padding:1rem 2.5rem;
+  border-radius:8px;
+  text-decoration:none;
+  font-family:'Orbitron',monospace;
+  font-weight:700;font-size:0.9rem;letter-spacing:3px;text-transform:uppercase;
+  transition:all 0.3s;
+  box-shadow:0 0 25px rgba(0,195,255,0.2),inset 0 0 25px rgba(0,195,255,0.03);
+  animation:fadeInUp 0.8s 0.6s ease both;
+  position:relative;overflow:hidden;
+}
+.btn-primary::before{
+  content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;
+  background:linear-gradient(45deg,transparent 40%,rgba(0,195,255,0.1) 50%,transparent 60%);
+  transform:translateX(-100%);transition:transform 0.6s;
+}
+.btn-primary:hover::before{transform:translateX(100%)}
+.btn-primary:hover{
+  background:rgba(0,195,255,0.25);
+  box-shadow:0 0 40px rgba(0,195,255,0.4),0 0 80px rgba(0,195,255,0.15),inset 0 0 25px rgba(0,195,255,0.08);
+  transform:translateY(-2px);
+}
+.btn-arrow{font-size:1.2rem;transition:transform 0.3s}
+.btn-primary:hover .btn-arrow{transform:translateX(4px)}
+.hero-stats{
+  display:flex;gap:3rem;justify-content:center;margin-top:4rem;
+  animation:fadeInUp 0.8s 0.8s ease both;
+}
+.stat{text-align:center}
+.stat-num{
+  font-family:'Orbitron',monospace;
+  font-size:2rem;font-weight:900;color:var(--neon);
+  text-shadow:0 0 15px rgba(0,195,255,0.6);
+}
+.stat-label{font-size:0.75rem;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;font-family:'Rajdhani',sans-serif}
+.scroll-indicator{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:var(--muted);font-size:0.7rem;letter-spacing:2px;text-transform:uppercase;
+  font-family:'Rajdhani',sans-serif;
+  animation:fadeInUp 1s 1s ease both;
+}
+.scroll-line{
+  width:1px;height:50px;
+  background:linear-gradient(to bottom,var(--neon),transparent);
+  animation:scrollAnim 2s ease-in-out infinite;
+}
+@keyframes scrollAnim{0%,100%{opacity:0.3;transform:scaleY(0.8)}50%{opacity:1;transform:scaleY(1)}}
+
+/* SECTIONS */
+section{position:relative;z-index:1;padding:6rem 2rem}
+.container{max-width:1100px;margin:0 auto}
+.section-label{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.75rem;letter-spacing:4px;text-transform:uppercase;
+  color:var(--neon);margin-bottom:0.8rem;
+  display:flex;align-items:center;gap:12px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:linear-gradient(to right,rgba(0,195,255,0.4),transparent);max-width:200px}
+.section-title{
+  font-family:'Orbitron',monospace;
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:700;color:var(--text);margin-bottom:1.5rem;
+}
+.section-title span{color:var(--neon);text-shadow:0 0 20px rgba(0,195,255,0.5)}
+
+/* ABOUT */
+#about{background:linear-gradient(to bottom,var(--dark),var(--dark2),var(--dark))}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.about-text p{color:rgba(232,244,255,0.6);line-height:1.9;margin-bottom:1.2rem;font-size:1rem}
+.about-cards{display:grid;gap:1rem}
+.feature-card{
+  background:linear-gradient(135deg,rgba(0,195,255,0.05),rgba(0,128,255,0.02));
+  border:1px solid rgba(0,195,255,0.15);
+  border-radius:12px;padding:1.2rem 1.5rem;
+  transition:all 0.3s;position:relative;overflow:hidden;
+}
+.feature-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(to right,transparent,rgba(0,195,255,0.6),transparent);
+  opacity:0;transition:opacity 0.3s;
+}
+.feature-card:hover::before{opacity:1}
+.feature-card:hover{
+  border-color:rgba(0,195,255,0.4);
+  background:linear-gradient(135deg,rgba(0,195,255,0.08),rgba(0,128,255,0.04));
+  transform:translateX(4px);
+  box-shadow:0 0 20px rgba(0,195,255,0.08);
+}
+.feature-icon{font-size:1.5rem;margin-bottom:0.5rem}
+.feature-card h3{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;color:var(--neon3);letter-spacing:1px;margin-bottom:0.3rem}
+.feature-card p{font-size:0.85rem;color:var(--muted)}
+
+/* STORY */
+#story{background:var(--dark2)}
+.story-timeline{position:relative;padding-left:3rem;margin-top:3rem}
+.story-timeline::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:1px;background:linear-gradient(to bottom,var(--neon),rgba(0,195,255,0.1),transparent);
+}
+.timeline-item{position:relative;margin-bottom:3rem}
+.timeline-dot{
+  position:absolute;left:-3.4rem;top:0;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--neon);
+  box-shadow:0 0 15px var(--neon),0 0 30px rgba(0,195,255,0.4);
+}
+.timeline-year{font-family:'Orbitron',monospace;font-size:0.7rem;color:var(--neon);letter-spacing:2px;margin-bottom:0.5rem}
+.timeline-item h3{font-family:'Rajdhani',sans-serif;font-size:1.2rem;font-weight:600;color:var(--text);margin-bottom:0.5rem}
+.timeline-item p{font-size:0.9rem;color:var(--muted);line-height:1.8}
+
+/* MISSION */
+#mission{background:var(--dark)}
+.mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:3rem}
+.glass-card{
+  background:linear-gradient(135deg,rgba(0,195,255,0.04),rgba(0,128,255,0.02));
+  border:1px solid rgba(0,195,255,0.12);
+  border-radius:16px;padding:2rem;
+  transition:all 0.4s;position:relative;overflow:hidden;
+  backdrop-filter:blur(8px);
+}
+.glass-card::after{
+  content:'';position:absolute;
+  top:-50%;right:-50%;width:100%;height:100%;
+  background:radial-gradient(circle,rgba(0,195,255,0.04) 0%,transparent 60%);
+  transition:all 0.4s;opacity:0;
+}
+.glass-card:hover::after{opacity:1;top:-20%;right:-20%}
+.glass-card:hover{
+  border-color:rgba(0,195,255,0.35);
+  box-shadow:0 0 30px rgba(0,195,255,0.1),0 20px 40px rgba(0,0,0,0.3);
+  transform:translateY(-4px);
+}
+.glass-card-icon{
+  width:50px;height:50px;
+  border:1px solid rgba(0,195,255,0.3);
+  border-radius:12px;
+  background:rgba(0,195,255,0.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;margin-bottom:1.2rem;
+  box-shadow:0 0 15px rgba(0,195,255,0.15);
+}
+.glass-card h3{font-family:'Orbitron',monospace;font-size:1rem;font-weight:700;color:var(--neon);margin-bottom:0.8rem;letter-spacing:1px}
+.glass-card p{font-size:0.9rem;color:rgba(232,244,255,0.55);line-height:1.8}
+
+/* GALLERY */
+#gallery{background:var(--dark2)}
+.gallery-subtitle{color:var(--muted);max-width:600px;line-height:1.8;margin-bottom:3rem}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.gallery-item{
+  position:relative;border-radius:12px;overflow:hidden;
+  border:1px solid rgba(0,195,255,0.1);
+  aspect-ratio:16/9;background:var(--dark3);
+  cursor:pointer;transition:all 0.3s;
+}
+.gallery-item:first-child{grid-column:span 2}
+.gallery-item img{
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 0.5s,filter 0.3s;
+  filter:brightness(0.7) saturate(0.8);
+}
+.gallery-item:hover img{transform:scale(1.05);filter:brightness(0.9) saturate(1.1)}
+.gallery-item:hover{border-color:rgba(0,195,255,0.4);box-shadow:0 0 20px rgba(0,195,255,0.15)}
+.gallery-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,195,255,0.15),transparent);
+  opacity:0;transition:opacity 0.3s;
+  display:flex;align-items:flex-end;padding:1rem;
+}
+.gallery-item:hover .gallery-overlay{opacity:1}
+.gallery-tag{
+  font-family:'Rajdhani',sans-serif;
+  font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--neon3);
+  background:rgba(0,195,255,0.1);
+  border:1px solid rgba(0,195,255,0.3);
+  padding:0.25rem 0.75rem;border-radius:4px;
+}
+
+/* TEAM */
+#team{background:var(--dark)}
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.team-card{
+  background:linear-gradient(135deg,rgba(0,195,255,0.04),transparent);
+  border:1px solid rgba(0,195,255,0.1);
+  border-radius:14px;padding:1.5rem;text-align:center;
+  transition:all 0.3s;
+}
+.team-card:hover{border-color:rgba(0,195,255,0.4);box-shadow:0 0 25px rgba(0,195,255,0.12);transform:translateY(-4px)}
+.team-avatar{
+  width:64px;height:64px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(0,195,255,0.3),rgba(0,128,255,0.1));
+  border:2px solid rgba(0,195,255,0.4);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.5rem;margin:0 auto 1rem;
+  box-shadow:0 0 20px rgba(0,195,255,0.2);
+  font-family:'Orbitron',monospace;color:var(--neon);font-weight:900;
+}
+.team-name{font-family:'Rajdhani',sans-serif;font-size:1rem;font-weight:600;color:var(--text);letter-spacing:1px}
+.team-role{font-size:0.75rem;letter-spacing:2px;text-transform:uppercase;color:var(--neon);margin-top:0.3rem;font-family:'Rajdhani',sans-serif}
+.team-badge{
+  display:inline-block;margin-top:0.8rem;font-size:0.7rem;
+  background:rgba(0,195,255,0.06);border:1px solid rgba(0,195,255,0.2);
+  border-radius:4px;padding:0.2rem 0.6rem;color:var(--muted);letter-spacing:1px;
+  font-family:'Rajdhani',sans-serif;
+}
+
+/* JOIN */
+#join{background:var(--dark2);text-align:center;position:relative;overflow:hidden}
+#join::before{
+  content:'';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);width:600px;height:600px;
+  background:radial-gradient(circle,rgba(0,195,255,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.join-title{font-family:'Orbitron',monospace;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--text);margin-bottom:1.5rem}
+.join-title span{color:var(--neon);text-shadow:0 0 20px rgba(0,195,255,0.6);animation:glowPulse 3s ease-in-out infinite}
+.join-desc{font-size:1.1rem;color:rgba(232,244,255,0.5);max-width:500px;margin:0 auto 3rem;line-height:1.8}
+.join-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:8px;
+  background:transparent;border:1px solid rgba(0,195,255,0.3);
+  color:rgba(232,244,255,0.6);padding:0.9rem 2rem;border-radius:8px;
+  text-decoration:none;font-family:'Rajdhani',sans-serif;
+  font-weight:600;font-size:0.85rem;letter-spacing:2px;text-transform:uppercase;
+  transition:all 0.3s;
+}
+.btn-secondary:hover{border-color:rgba(0,195,255,0.5);color:var(--text);background:rgba(0,195,255,0.05)}
+
+/* FOOTER */
+footer{
+  background:var(--dark);border-top:1px solid rgba(0,195,255,0.08);
+  padding:3rem 2rem;text-align:center;
+}
+.footer-logo{font-family:'Orbitron',monospace;font-size:1.5rem;font-weight:900;color:var(--neon);text-shadow:0 0 20px rgba(0,195,255,0.5);letter-spacing:3px;margin-bottom:1rem}
+.footer-text{font-size:0.8rem;color:var(--muted);letter-spacing:1px}
+.footer-divider{width:100px;height:1px;background:linear-gradient(to right,transparent,var(--neon),transparent);margin:1.5rem auto}
+
+/* SCANLINE */
+.scanline{
+  position:fixed;top:0;left:0;right:0;bottom:0;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,195,255,0.008) 2px,rgba(0,195,255,0.008) 4px);
+  pointer-events:none;z-index:0;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .about-grid,.mission-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr 1fr}
+  .gallery-item:first-child{grid-column:span 2}
+  .team-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:1.5rem}
+  section{padding:4rem 1.5rem}
+}
+@media(max-width:480px){
+  .gallery-grid{grid-template-columns:1fr}
+  .gallery-item:first-child{grid-column:span 1}
+  .team-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="particles" id="particles"></div>
+<div class="scanline"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="logo">
+    <div class="logo-icon" style="padding:2px;overflow:hidden;background:none">
+      <img src="a_3316b054166e18e86d385bfc1990ade7_1.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:6px">
+    </div>
+    ATHENA STUDIOS
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">Hakkımızda</a></li>
+    <li><a href="#story">Hikayemiz</a></li>
+    <li><a href="#mission">Misyon</a></li>
+    <li><a href="#gallery">Galeri</a></li>
+    <li><a href="#team">Ekip</a></li>
+  </ul>
+  <a href="https://discord.gg/athenastudios" target="_blank" class="nav-cta">Katıl</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Minecraft Roleplay Sunucusu</div>
+    <h1 class="hero-title">ATHENA<br>STUDIOS</h1>
+    <p class="hero-subtitle">Bir hikâye. Bir dünya. Senin rolün.</p>
+    <p class="hero-desc">Sıradan bir sunucu değil — gerçek bir evren. Karakterini seç, hikayeni yaz, dünyayı şekillendir.</p>
+    <a href="https://discord.gg/athenastudios" target="_blank" class="btn-primary">
+      Discord'a Katıl <span class="btn-arrow">→</span>
+    </a>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">5800</div>
+        <div class="stat-label">Sunucudaki Üye</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">35</div>
+        <div class="stat-label">Günlük Aktif Oyuncu</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">59</div>
+        <div class="stat-label">Eş Zamanlı Rekor</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Keşfet
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">Hakkımızda</div>
+        <h2 class="section-title">Sıradan Değil,<br><span>Efsanevi</span></h2>
+        <p>Boralo Roleplay, Minecraft evreninde benzersiz bir hikaye anlatma deneyimi sunan premium bir topluluktur. Her oyuncu kendi karakterinin yaratıcısı, her karar dünyayı etkiler.</p>
+        <p>Profesyonel senaryolar, derin karakter geliştirme sistemleri ve dinamik dünya olaylarıyla dolu sunucumuzda kendinizi tamamen kaptırın. Bu sadece bir oyun değil — bu bir yaşam tarzı.</p>
+        <p>Detaylara verdiğimiz önem, özenle hazırlanmış haritalar ve eşsiz eklentilerle Boralo, Türkiye'nin en prestijli roleplay deneyimini sunar.</p>
+      </div>
+      <div class="about-cards">
+        <div class="feature-card">
+          <div class="feature-icon">⚔️</div>
+          <h3>Derin Roleplay Sistemi</h3>
+          <p>Karmaşık karakter geliştirme ve özel senaryo scriptleri</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Özel Dünya Tasarımı</h3>
+          <p>El yapımı haritalar, sinematik yapılar ve benzersiz ortamlar</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3>Aktif Topluluk</h3>
+          <p>Yüzlerce tutku sahibi oyuncu, güçlü moderasyon ekibi</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎭</div>
+          <h3>Dinamik Olaylar</h3>
+          <p>Sunucu genelini etkileyen canlı etkinlikler ve hikayeler</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="container">
+    <div class="section-label">Hikayemiz</div>
+    <h2 class="section-title">Sıfırdan <span>Efsane</span>'ye</h2>
+    <div class="story-timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">BAŞLANGIÇ</div>
+        <h3>Bir Fikrin Doğuşu</h3>
+        <p>Her şey küçük bir grupla başladı. Minecraft'ta daha derin, daha anlamlı bir deneyim arayışındaydık. Sıradan sunucularda bulamadığımız o özel hissi yaratmak istedik.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">İNŞA</div>
+        <h3>Dünyanın Kurulması</h3>
+        <p>Aylarca süren inşa sürecinde, her taşı özenle yerleştirdik. Özel eklentiler kodlandı, haritalar tasarlandı, sistem üstüne sistem kuruldu. Boralo yavaş yavaş hayat buldu.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">BÜYÜME</div>
+        <h3>Topluluğun Güçlenmesi</h3>
+        <p>İlk oyuncular geldi, kaldı ve kendilerinden bir şeyler kattı. Topluluk kendi kültürünü, kendi hikayelerini, kendi efsanelerini yarattı. Boralo artık sadece bir sunucu değildi.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-year">BUGÜN</div>
+        <h3>Seni Bekliyoruz</h3>
+        <p>Yüzlerce aktif oyuncu, sayısız hikaye, sonsuz macera. Ve en önemlisi — senin hikayen henüz yazılmadı. Bu evrende sana ayrılmış bir yer var.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section id="mission">
+  <div class="container">
+    <div class="section-label">Misyon & Vizyon</div>
+    <h2 class="section-title">Neye <span>İnanıyoruz</span></h2>
+    <div class="mission-grid">
+      <div class="glass-card">
+        <div class="glass-card-icon">🎯</div>
+        <h3>MİSYONUMUZ</h3>
+        <p>Her oyuncuya unutulmaz bir hikaye deneyimi yaşatmak. Teknoloji ve yaratıcılığı bir araya getirerek, sanal dünyada gerçek duygular uyandırmak.</p>
+      </div>
+      <div class="glass-card">
+        <div class="glass-card-icon">🔭</div>
+        <h3>VİZYONUMUZ</h3>
+        <p>Türkiye'nin en köklü ve en kaliteli roleplay topluluğu olmak. Yıllar geçtikçe büyüyen, güçlenen ve oyunculara sürekli yeni deneyimler sunan bir ekosistemin mimarı olmak.</p>
+      </div>
+      <div class="glass-card">
+        <div class="glass-card-icon">💎</div>
+        <h3>KALİTE ANLAYIŞI</h3>
+        <p>Hiçbir şey "yeterince iyi" değildir. Her sistem, her senaryo, her detay mükemmeliyetçi bir bakışla tasarlanır. Çünkü oyuncularımız en iyisini hak ediyor.</p>
+      </div>
+      <div class="glass-card">
+        <div class="glass-card-icon">🤝</div>
+        <h3>TOPLULUK RUHU</h3>
+        <p>Güçlü bir topluluk, güçlü bireylerden oluşur. Herkese saygı, herkese adalet. Boralo'da herkesin sesi duyulur, herkesin hikayesi önemlidir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="section-label">Roleplay İçi Görüntüler</div>
+    <h2 class="section-title">Dünyanın <span>İçinden</span></h2>
+    <p class="gallery-subtitle">Gerçek oyuncular, gerçek anlar. Boralo Roleplay'in karanlık ve gizemli evreninden kareler.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="grand14.png" alt="Boralo RP karanlık toplantı">
+        <div class="gallery-overlay"><span class="gallery-tag">Toplantı Sahnesi</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="grand22.png" alt="Boralo RP karakter">
+        <div class="gallery-overlay"><span class="gallery-tag">Karakter</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="grand11.png" alt="Boralo RP ordu">
+        <div class="gallery-overlay"><span class="gallery-tag">Güç Gösterisi</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="grand15.png" alt="Boralo RP aksiyon">
+        <div class="gallery-overlay"><span class="gallery-tag">Aksiyon</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="grand20.png" alt="Boralo RP keşif">
+        <div class="gallery-overlay"><span class="gallery-tag">Keşif</span></div>
+      </div>
+      <div class="gallery-item">
+        <img src="grand21.png" alt="Boralo RP dünya">
+        <div class="gallery-overlay"><span class="gallery-tag">Dünya</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="container">
+    <div class="section-label">Kurucular</div>
+    <h2 class="section-title">Athena Studios'un <span>Kurucuları</span></h2>
+    <div class="team-grid" style="grid-template-columns:repeat(3,1fr);max-width:700px;margin:3rem auto 0">
+      <div class="team-card">
+        <div class="team-avatar" style="background:none;border:2px solid rgba(0,195,255,0.5);overflow:hidden;padding:0">
+          <img src="6eff14b542c0aef937ba8fe4c54b8dd0.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+        </div>
+        <div class="team-name">Mert</div>
+        <div class="team-role">Kurucu</div>
+        <div class="team-badge">⚡ Kurucu</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:none;border:2px solid rgba(0,195,255,0.5);overflow:hidden;padding:0">
+          <img src="4ff0d191e3c934f672dbb42d960744c9.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+        </div>
+        <div class="team-name">Yiğit</div>
+        <div class="team-role">Kurucu</div>
+        <div class="team-badge">🔧 Kurucu</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar" style="background:none;border:2px solid rgba(0,195,255,0.5);overflow:hidden;padding:0">
+          <img src="5e0167dabfcee91745a81a42fc59fb8f.png" style="width:100%;height:100%;object-fit:cover;border-radius:50%">
+        </div>
+        <div class="team-name">Mercan</div>
+        <div class="team-role">Kurucu</div>
+        <div class="team-badge">🛡️ Kurucu</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section id="join">
+  <div class="container" style="position:relative;z-index:1">
+    <div class="section-label" style="justify-content:center">Katılım</div>
+    <h2 class="join-title">Hikayen Seni<br><span>Bekliyor</span></h2>
+    <p class="join-desc">Discord sunucumuza katıl, karakterini oluştur ve Athena Studios evreninde yerini al. Binlerce hikayeden biri sen olabilirsin.</p>
+    <div class="join-btns">
+      <a href="https://discord.gg/athenastudios" target="_blank" class="btn-primary" style="animation:none">
+        Discord'a Katıl <span class="btn-arrow">→</span>
+      </a>
+      <a href="https://discord.gg/athenastudios" target="_blank" class="btn-secondary">
+        Kuralları Oku
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">ATHENA STUDIOS</div>
+  <div class="footer-divider"></div>
+  <p class="footer-text">© 2024 Athena Studios · Tüm hakları saklıdır</p>
+  <p class="footer-text" style="margin-top:0.5rem;color:rgba(106,143,168,0.5)">Bir hikâye. Bir dünya. Senin rolün.</p>
+</footer>
+
+<script>
+// Particles
+const pContainer = document.getElementById('particles');
+const colors = ['rgba(0,195,255,0.6)','rgba(0,128,255,0.5)','rgba(125,249,255,0.4)'];
+for(let i = 0; i < 30; i++){
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random() * 3 + 1;
+  const color = colors[Math.floor(Math.random() * colors.length)];
+  const left = Math.random() * 100;
+  const duration = Math.random() * 15 + 10;
+  const delay = Math.random() * 15;
+  p.style.cssText = `
+    width:${size}px;height:${size}px;
+    background:${color};
+    left:${left}%;
+    animation-duration:${duration}s;
+    animation-delay:-${delay}s;
+    box-shadow:0 0 ${size*3}px ${color};
+  `;
+  pContainer.appendChild(p);
+}
+
+// Navbar scroll
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  if(window.scrollY > 50){
+    nav.style.background = 'rgba(2,8,16,0.98)';
+    nav.style.borderBottom = '1px solid rgba(0,195,255,0.12)';
+  } else {
+    nav.style.background = 'linear-gradient(to bottom,rgba(2,8,16,0.95),transparent)';
+    nav.style.borderBottom = '1px solid rgba(0,195,255,0.08)';
+  }
+});
+
+// Smooth reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.feature-card, .glass-card, .team-card, .timeline-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
